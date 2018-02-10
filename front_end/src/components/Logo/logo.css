@@ -1,0 +1,20 @@
+
+.purple{
+    font-family: 'Libre Franklin', sans-serif;
+    text-shadow: 1px 2px 2px #808080;
+    vertical-align: middle;
+    letter-spacing: -.7rem;
+    color: #800080;
+    font-size: 5rem;
+}
+.orange{
+    font-family: 'Libre Franklin', sans-serif;
+    text-shadow: 1px 2px 2px #808080;
+    vertical-align: middle;
+    letter-spacing: -.7rem;
+    color: #e96c0b;
+    font-size: 5rem;
+}
+.logo_img{
+    height: 7rem;
+}
