@@ -1,0 +1,17 @@
+[
+    {
+        "id": 1,
+        "img": "http://www.optusrh.com.br/images/banner/Caroussel_01.jpg",
+        "text": "Nosso compromisso é cuidar de cada cliente, entendendo a sua necessidade e buscando prestar um atendimento personalizado, diferenciado e com excelência."
+    },
+    {
+        "id": 2,
+        "img": "http://www.optusrh.com.br/images/banner/Caroussel_02.jpg",
+        "text": "A OptusRh é uma empresa de recursos humanos que oferece serviço personalizado e estrutura completa, oferecendo aos seus clientes um leque de serviços e soluções em RH."
+    },
+    {
+        "id": 3,
+        "img": "http://www.optusrh.com.br/images/banner/Curso-Oratoria.jpg",
+        "text": "Participe! Faça sua inscrição. Curso de Oratória "
+    }
+]

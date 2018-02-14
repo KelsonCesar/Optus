@@ -1,10 +1,13 @@
 nav.navbar.navbar-default{
     height: 7rem;
-    background-color: rgba(143, 142, 142, 0);
 }
 ul.nav.navbar-nav.navbar-right{
     padding-top: 1rem;
 }
 .navbar-brand{
     padding: 0 15px;
+}
+
+.caroussel-caption{
+    left: 10px;
 }
