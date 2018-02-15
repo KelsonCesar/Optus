@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
-import { Navbar, Nav, NavItem, Carousel, Grid, Row, Col  } from 'react-bootstrap';
+import { Navbar, Nav, NavItem, NavDropdown, MenuItem, Carousel, Grid, Row, Col, Table  } from 'react-bootstrap';
 import { Logo }from '../../components/Logo';
-import OptusSrc from '../../Optus.json';
+import { CarouselImg }from '../../components/Images';
+import OptusCarousel from '../../OptusCarousel.json';
+import OptusVagas from '../../OptusVagas.json';
 import './home.css';
 
 class Home extends Component{
     
     componentDidMount() {
-        this.setState({optus: OptusSrc});
-        this.ConsoleLog();
+        this.setState({optus: OptusCarousel});
     };
     // Constructor
     constructor(props) {
@@ -19,7 +20,6 @@ class Home extends Component{
         };
     };
 
-    ConsoleLog = () => console.log(OptusSrc);
     render(){
         
         return(
@@ -57,6 +57,13 @@ class Home extends Component{
                         <NavItem eventKey={3} href="#">
                         PARA EMPRESAS
                         </NavItem>
+                        <NavDropdown eventKey={4} title='MAIS' id="basic-nav-dropdown">
+                        <MenuItem id="basic-nav-dropdown" eventKey={4.1}>Login</MenuItem>
+                        <MenuItem id="basic-nav-dropdown" eventKey={4.2}>Cadastro</MenuItem>
+                        <MenuItem id="basic-nav-dropdown" eventKey={4.3}>Servicos</MenuItem>
+                        <MenuItem id="basic-nav-dropdown" eventKey={4.4}>Treinamentos</MenuItem>
+                        <MenuItem id="basic-nav-dropdown" eventKey={4.5}>Contato</MenuItem>
+                        </NavDropdown>
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>
@@ -66,24 +73,46 @@ class Home extends Component{
                     <Col md={7}>
                         <Carousel>
                             <Carousel.Item>
-                                <img max-width={900} max-height={500} alt="900x500" src={OptusSrc[0].img} />
+                                <CarouselImg src={OptusCarousel[0].img} />
                                 <Carousel.Caption>
-                                    <h4>{OptusSrc[0].text}</h4>
+                                    <h4 className='OptusSrc_Caption'>{OptusCarousel[0].text}</h4>
                                 </Carousel.Caption>
                             </Carousel.Item>
                             <Carousel.Item>
-                                <img max-width={900} max-height={500} alt="900x500" src={OptusSrc[1].img} />
+                                <CarouselImg src={OptusCarousel[1].img} />
                                 <Carousel.Caption>
-                                    <h4>{OptusSrc[1].text}</h4>
+                                    <h4>{OptusCarousel[1].text}</h4>
                                 </Carousel.Caption>
                             </Carousel.Item>
                             <Carousel.Item>
-                                <img max-width={900} max-height={500} alt="900x500" src={OptusSrc[2].img} />
+                                <CarouselImg src={OptusCarousel[2].img} />
                                 <Carousel.Caption>
-                                    <h4>{OptusSrc[2].text}</h4>
+                                    <h4>{OptusCarousel[2].text}</h4>
                                 </Carousel.Caption>
                             </Carousel.Item>
                         </Carousel>
+                    </Col>
+                    <Col md={5}>
+                        <h2> Vagas Recentes </h2>
+                        <Table responsive>
+                            <thead>
+                                <tr>
+                                <th>Vagas</th>
+                                <th>Local</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                <td>{OptusVagas[0].position}</td>
+                                <td>{OptusVagas[0].cidade}</td>
+                                </tr>
+                                <tr>
+                                <td>{OptusVagas[1].position}</td>
+                                <td>{OptusVagas[1].cidade}</td>
+                                </tr>
+                                <tr></tr>   
+                            </tbody>
+                        </Table>
                     </Col>
                 </Row>
             </Grid>

@@ -1,5 +1,10 @@
 nav.navbar.navbar-default{
     height: 7rem;
+    box-shadow: 1px 1px 10px rgba(110, 4, 75, 0.521);
+}
+.navbar-default .navbar-collapse,
+.navbar-default .navbar-form{
+    border-color: transparent;
 }
 ul.nav.navbar-nav.navbar-right{
     padding-top: 1rem;
@@ -8,6 +13,37 @@ ul.nav.navbar-nav.navbar-right{
     padding: 0 15px;
 }
 
-.caroussel-caption{
-    left: 10px;
+.carousel-indicators{
+    border: orange;
+    top: 0px;
+}
+.carousel-caption{
+    background: rgba(110, 4, 75, 0.521);
+    padding-bottom: 2px;
+    padding-top: 0px;
+    right: 2px;
+    left: 2px;
+    bottom: 2px;
+}
+.OptusSrc_Caption{
+    margin-bottom: 0px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+
+
+
+
+
+
+
+
+@media screen and (max-width: 768px){
+
+    .nav>li{
+        width: 50%;
+        z-index: 100;
+        background-color: #fff;
+    }
 }
