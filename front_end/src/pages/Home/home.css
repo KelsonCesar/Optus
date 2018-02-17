@@ -1,3 +1,15 @@
+body{
+  height: 100%;
+}
+.page-wrap {
+    min-height: 100%;
+    margin-bottom: -142px; 
+}
+.page-wrap:after {
+    content: "";
+    display: block;
+    height: 142px;
+}
 nav.navbar.navbar-default{
     height: 7rem;
     box-shadow: 1px 1px 10px rgba(110, 4, 75, 0.521);
@@ -27,11 +39,20 @@ ul.nav.navbar-nav.navbar-right{
 }
 .OptusSrc_Caption{
     margin-bottom: 0px;
-    margin-left: 10px;
     margin-right: 10px;
+    margin-left: 10px;
 }
-
-
+.col-sm-12{
+    display: flex;
+    text-align: center;
+    justify-content: center;
+}
+p{
+    font-size: 15pt;
+    color: #52575c;
+    text-align: justify;
+    font-family: 'Source Sans Pro',sans-serif;
+}
 
 
 

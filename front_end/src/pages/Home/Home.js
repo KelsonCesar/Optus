@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
-import { Navbar, Nav, NavItem, NavDropdown, MenuItem, Carousel, Grid, Row, Col, Table  } from 'react-bootstrap';
+import { Navbar, Nav, NavItem, NavDropdown, MenuItem, Carousel, Grid, Row, Col, Table, Button, ButtonToolbar  } from 'react-bootstrap';
 import { Logo }from '../../components/Logo';
-import { CarouselImg, ParaImg }from '../../components/Images';
+import { P, Span, Sticky }from '../../components/Tag';
+import { CarouselImg, ParaImg, ServicosImg }from '../../components/Images';
 import OptusCarousel from '../../OptusCarousel.json';
+import OptusServicos from '../../OptusServicos.json';
 import OptusVagas from '../../OptusVagas.json';
 import OptusPara from '../../OptusPara.json';
 import Optus from '../../Optus.json';
@@ -14,13 +16,14 @@ class Home extends Component{
         // this.setState({Optus: Optus});
     };
     componentDidMount() {
+        this.setState({render: 0});
         console.log(this.state.render);
     };
     // Constructor
     constructor(props) {
         super(props);
         this.state = {
-            render: 0,
+            render: '',
             // optus: [],
         };
     };
@@ -32,8 +35,9 @@ class Home extends Component{
     render(){
         
         return(
-            <span>
-            <Navbar collapseOnSelect>
+            <div>
+            <span class="page-wrap">
+            <Navbar fixedTop>{/*  collapseOnSelect */}
                 <Navbar.Header>
                     <Navbar.Brand>
                         {/* <NavItem eventKey={0} onSelect={this.handleSelect}> */}
@@ -66,11 +70,11 @@ class Home extends Component{
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>
-            
+            <div style={{margin: '100px'}}/>
             <Grid>
                 <Row className="show-grid">
                     {this.state.render === 0 ?
-                    <Col md={7}>
+                    <Col sm={7}>
                         <Carousel>
                             <Carousel.Item>
                                 <CarouselImg src={OptusCarousel[0].img} />
@@ -94,66 +98,86 @@ class Home extends Component{
                     </Col>
                     : this.state.render === 1 ?
                     Optus.map(optus =>
-                    <Col md={12}>
+                    <Col xs={12} md={8} mdOffset={2}>
                         <span key={optus.id}>
                             <h2>{optus.about_header}</h2>
                             <p>{optus.about}</p>
                             <h2>{optus.ideals}</h2>
-                            <h3>{optus.mission_header}</h3>
+                            <h3><Span>{optus.mission_header}</Span></h3>
                             <p>{optus.mission}</p>
-                            <h3>{optus.vision_header}</h3>
+                            <h3><Span>{optus.vision_header}</Span></h3>
                             <p>{optus.vision}</p>
-                            <h3>{optus.values_header}</h3>
+                            <h3><Span>{optus.values_header}</Span></h3>
                             <p>{optus.values}</p>
                             <h2>{optus.promises}</h2>
-                            <h3>{optus.client_header}</h3>
+                            <h3><Span>{optus.client_header}</Span></h3>
                             <p>{optus.client}</p>
-                            <h3>{optus.collaborator_header}</h3>
+                            <h3><Span>{optus.collaborator_header}</Span></h3>
                             <p>{optus.collaborator}</p>
-                            <h3>{optus.society_header}</h3>
+                            <h3><Span>{optus.society_header}</Span></h3>
                             <p>{optus.society}</p>
                         </span>
                     </Col>
                     )
                     : this.state.render === 2 ?
                     OptusPara.map(optuspara =>
-                    <Col md={7}>
+                    <Col sm={7}>
                     <span key={optuspara.id}>
-                        <h2>{optuspara.header_voce}</h2>
+                        <Col sm={12}><h2>{optuspara.header_voce}</h2></Col>
                         <ParaImg src={optuspara.voce_img}/>
-                        <p>{optuspara.caption_voce}</p>
+                        <P>{optuspara.caption_voce}</P>
+                        <Col sm={12}>
+                        <ButtonToolbar>
+                            <Button bsStyle="primary" bsSize="large">
+                                Cadastro Individual
+                            </Button>
+                            <Button bsSize="large">
+                                Acessar Minha Conta
+                            </Button>
+                        </ButtonToolbar>
+                        </Col>
                     </span>
                     </Col>
                     )                        
                     : this.state.render === 3 ?
                     OptusPara.map(optuspara =>                    
-                        <Col md={7}>                    
+                        <Col sm={7}>                    
                     <span key={optuspara.id}> 
-                        <h2>{optuspara.header_empresa}</h2>
+                        <Col sm={12}><h2>{optuspara.header_empresa}</h2></Col>
                         <ParaImg src={optuspara.empresa_img}/>
-                        <p>{optuspara.caption_empresa}</p>
+                        <P>{optuspara.caption_empresa}</P>
+                        <Col sm={12}>
+                        <ButtonToolbar>
+                            <Button bsStyle="primary" bsSize="large">
+                                Cadastro Empresarial
+                            </Button>
+                            <Button bsSize="large">
+                                Acessar Minha Conta
+                            </Button>
+                        </ButtonToolbar>
+                        </Col>
                     </span>
                     </Col>
-                    )
-                    : ("Nothing")}
+                    ) 
+                    : <span/> }
                     {this.state.render === 0 || this.state.render === 2 ?
-                    <Col md={5}>
-                        <h2> Vagas Recentes </h2>
+                    <Col sm={5}>
+                        <h2>Vagas Recentes</h2>
                         <Table responsive>
                             <thead>
                                 <tr>
-                                <th>Vagas</th>
-                                <th>Local</th>
+                                <th><p><strong>Vagas</strong></p></th>
+                                <th><p><strong>Local</strong></p></th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                <td>{OptusVagas[0].position}</td>
-                                <td>{OptusVagas[0].cidade}</td>
+                                <td><p>{OptusVagas[0].position}</p></td>
+                                <td><p>{OptusVagas[0].cidade}</p></td>
                                 </tr>
                                 <tr>
-                                <td>{OptusVagas[1].position}</td>
-                                <td>{OptusVagas[1].cidade}</td>
+                                <td><p>{OptusVagas[1].position}</p></td>
+                                <td><p>{OptusVagas[1].cidade}</p></td>
                                 </tr>
                                 <tr></tr>   
                             </tbody>
@@ -161,8 +185,43 @@ class Home extends Component{
                     </Col>
                     : <span/>}
                 </Row>
+                {this.state.render === 2 || this.state.render === 3 ? 
+                OptusServicos.map(servicos =>
+                <Row className="show-grid" key={servicos.id}>
+                <span>
+                    <Col md={12}><hr/></Col>
+                    <Col sm={12}><h2>{servicos.header}</h2></Col>
+                    <Col sm={12}><h3>{servicos.header_caption}</h3></Col>
+                    <Col sm={4}>
+                        <ServicosImg src={servicos.recsel_img}/>
+                        <P>{servicos.recsel_header}</P>
+                    </Col>
+                    <Col sm={4}>
+                        <ServicosImg src={servicos.training_img}/>
+                        <P>{servicos.training_header}</P>
+                    </Col>
+                    <Col sm={4}>
+                        <ServicosImg src={servicos.evalpsic_img}/>
+                        <P>{servicos.evalpsic_header}</P>
+                    </Col>
+                </span>
+                </Row>
+                )
+                : <span/> }
             </Grid>
             </span>
+            <div style={{margin: '50px'}}/>
+            <Sticky>
+                <Grid>
+                    <Row>
+                        <Col md={12}>
+                        <hr/>
+                        © OptusRH. Todos os direitos reservados. | SASWEB
+                        </Col>
+                    </Row>
+                </Grid>
+            </Sticky>
+            </div>
         )
     }
 }

@@ -2,21 +2,21 @@
     {
         "id": 1,
         "header": "NOSSOS SERVIÇOS",
-        "caption": "Conheça os principais serviços oferecidos pela OptusRH."
-    },
-    {
-        "id": 2,
-        "RecSel": "http://www.optusrh.com.br/images/servicos/RecSel.jpg",
-        "caption": "Recrutamento e Seleção"
-    },
-    {
-        "id": 3,
-        "Treinamento_Img": "http://www.optusrh.com.br/images/servicos/Treinamento.jpg",
-        "caption": "Treinamento e Desenvolvimento"
-    },
-    {
-        "id": 4,
-        "AvaliacaoPsi": "http://www.optusrh.com.br/images/servicos/AvaliacaoPsi.jpg",
-        "caption": "Avaliação Psicológica"
+        "header_caption": "Conheça os principais serviços oferecidos pela OptusRH.",
+        "recsel_header": "Recrutamento e Seleção",
+        "recsel_img": "http://www.optusrh.com.br/images/servicos/RecSel.jpg",
+        "recsel_caption": "O objetivo de toda empresa é o sucesso e sua persistência no mercado. Por isso, uma organização só atingirá seus objetivos ao estabelecer seu perfil por intermédio de mudanças organizacionais do seu quadro de pessoal. A criatividade, o potencial, o aprendizado e a vontade de cada pessoa vencer são valores humanos insubstituíveis, por mais que a tecnologia tenha avançado na era globalizada, as máquinas jamais substituirão a diversidade e capacidade humana em se adaptar dentro de uma organização. Atualmente, quando se fala de recrutamento e seleção, refere-se a uma das mais ricas ferramentas de gestão de pessoas nas organizações. É através deste processo que as organizações estão percebendo a importância das pessoas que a compõem, não como meros funcionários, mas como parceiro. Recrutamento é a fase anterior da seleção. Na seleção, define-se o candidato mais adequado ao cargo e faz-se o convite para que ele integre a organização. Seleção é a escolha dentre os candidatos inscritos aquele mais adequado à vaga.",
+        "training_header": "Treinamento e Desenvolvimento",
+        "training_img": "http://www.optusrh.com.br/images/servicos/Treinamento.jpg",
+        "training_caption":"Processo de aprendizagem que auxilia o profissional a atingir a eficiência exigida no seu trabalho, para que esse profissional tenha um crescimento, podendo explorar o seu potencial.",
+        "evalpsic_header": "Avaliação Psicológica",
+        "evalpsic_img": "http://www.optusrh.com.br/images/servicos/AvaliacaoPsi.jpg",
+        "evalpsic_caption": "A avaliação psicológica consiste em coletar e interpretar os dados, a partir da aplicação de vários instrumentos psicológicos, obtidos por meio de um conjunto de procedimentos confiáveis, entendidos como aqueles reconhecidos pela ciência psicológica. Dentre eles, teste, entrevistas, observações e etc. Através da Avaliação psicológica é possível estudar a personalidade, competências cognitivas, memoria entre muitas outras dimensões da psique. ",
+        "coaching_header": "Coaching",
+        "coaching_img": "http://www.optusrh.com.br/images/servicos/Coaching.jpg",
+        "coaching_caption": "É um processo que visa elevar a performance de um indivíduo (grupo ou empresa), aumentando os resultados positivos por meio de metodologias, ferramentas e técnicas cientificamente validadas, aplicadas por um profissional habilitado (o coach), em parceria com o cliente (o coachee). Esse processo trabalha toda a parte de comportamento e desenvolvimento humano, que visa potencializar o nível de resultados positivos em diversas áreas de uma vida.",
+        "bmanagment_header": "Gestão Empresarial",
+        "bmanagment_img": "http://www.optusrh.com.br/images/servicos/Gestao%20Empresarial.jpg",
+        "bmanagment_caption": "Modelo de trabalho que é orientado por uma política de valores que é capaz de planejar, alocar e gerir recursos, ações, iniciativas, procurando viabilizar o alcance dos objetivos propostos por uma organização, ou seja, pela empresa."
     }
 ]

@@ -1,0 +1,25 @@
+.custom_p{
+    padding: 5px;
+    font-size: 15pt;
+    color: #52575c;    
+    text-align: justify;
+    text-align-last: center;
+    font-family: 'Source Sans Pro',sans-serif;
+}
+.custom_span{
+    padding: 5px;
+    font-size: 20pt;
+    color: #8f4c9b;
+    font-family: 'Source Sans Pro',sans-serif;    
+}
+.custom_stickyFooter{
+    flex: none;
+    padding: 5px;
+    font-size: 15pt;
+    text-align-last: center;
+    color: #a2a7ac !important;
+    font-family: 'Source Sans Pro',sans-serif;
+}
+.custom_stickyFooter:after {
+    height: 142px; 
+  }
