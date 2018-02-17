@@ -1,0 +1,32 @@
+[
+    {
+        "id": 1,
+
+        "name": "OPTUSRH",
+
+        
+        "about_header": "SOBRE A OPTUSRH",
+        "about": "A OptusRh é uma empresa de recursos humanos que oferece serviço personalizado e estrutura completa, informatizada e qualificada, oferecendo aos seus clientes um leque de serviços e soluções em RH, como recrutamento e seleção, avaliações psicológicas, orientação profissional e treinamentos.",
+
+
+        "ideals": "Identidade Corporativa",
+        "mission_header": "Missão",
+        "mission": "Aplicar e desenvolver soluções empresariais ao cliente corporativo, na área de Gestão de Pessoas.",
+        "vision_header": "Visão",
+        "vision": "Ser uma empresa de referência em consultoria empresarial e treinamento no interior de Minas Gerais.",
+        "values_header": "Valores",
+        "values": "Comprometimento; Valorização humana; Qualidade nos serviços prestados; Foco no cliente.",
+
+
+        "promises": "Nosso compromisso",
+        "client_header": "Com o cliente",
+        "client": "Nosso compromisso é cuidar de cada cliente, entendendo a sua necessidade e buscando prestar um atendimento cada vez mais pessoal, diferenciado e com excelência. Dedicação e integridade são marcas do atendimento da OptusRH, demonstrando que o cliente pode contar com a OptusRH sempre. O foco não é apenas fechar um negócio, mas sim estabelecer uma relação duradoura, contribuindo para que os objetivos sejam alcançados.",
+        "colaborator_header": "Com o colaborador",
+        "collaborator": "A valorização do colaborador é prioridade, pois entendemos que um colaborador motivado agrega grandemente a qualquer instituição ou empresa. Nosso papel é promover o bem estar no ambiente organizacional, e criar oportunidades de crescimento para todos os nossos colaboradores.",
+        "society_header": "Com a sociedade",
+        "society": "O papel da OptusRH é promover crescimento social e econômico de comunidades. Nós tratamos a todos com respeito e dignidade, independente do nível de instrução, sexo, raça, posição hierárquica, financeira ou social. Reconhecemos que a qualidade começa com o respeito aos direitos humanos.",
+
+
+        "logo": "http://res.cloudinary.com/promanager/image/upload/v1518236844/favicon.ico_cgdh2n.png"
+    }
+]

@@ -1,0 +1,12 @@
+[
+    {
+        "id": 1,
+        "header_voce": "OPTUS RH PARA VOCÊ",
+        "voce_img": "http://www.optusrh.com.br/images/servicos/ParaVoce.jpg",
+        "caption_voce": "A OptusRh busca a excelência na prestação de serviços em recursos humanos, sendo referência como facilitadora de recolocação no mercado de trabalho.",
+
+        "header_empresa": "OPTUS RH PARA EMPRESA",
+        "empresa_img": "http://www.optusrh.com.br/images/servicos/ParaEmpresa.jpg",
+        "caption_empresa": "A OptusRH possui amplo banco de dados, com candidatos de todo o Vale do Aço, que otimiza o processo de seleção de candidatos, atuando com eficiência e agilidade."
+    }
+]

@@ -1,0 +1,22 @@
+[
+    {
+        "id": 1,
+        "header": "NOSSOS SERVIÇOS",
+        "caption": "Conheça os principais serviços oferecidos pela OptusRH."
+    },
+    {
+        "id": 2,
+        "RecSel": "http://www.optusrh.com.br/images/servicos/RecSel.jpg",
+        "caption": "Recrutamento e Seleção"
+    },
+    {
+        "id": 3,
+        "Treinamento_Img": "http://www.optusrh.com.br/images/servicos/Treinamento.jpg",
+        "caption": "Treinamento e Desenvolvimento"
+    },
+    {
+        "id": 4,
+        "AvaliacaoPsi": "http://www.optusrh.com.br/images/servicos/AvaliacaoPsi.jpg",
+        "caption": "Avaliação Psicológica"
+    }
+]

@@ -1,25 +1,34 @@
 import React, { Component } from 'react';
 import { Navbar, Nav, NavItem, NavDropdown, MenuItem, Carousel, Grid, Row, Col, Table  } from 'react-bootstrap';
 import { Logo }from '../../components/Logo';
-import { CarouselImg }from '../../components/Images';
+import { CarouselImg, ParaImg }from '../../components/Images';
 import OptusCarousel from '../../OptusCarousel.json';
 import OptusVagas from '../../OptusVagas.json';
+import OptusPara from '../../OptusPara.json';
+import Optus from '../../Optus.json';
 import './home.css';
 
 class Home extends Component{
     
+    componentWillMount(){
+        // this.setState({Optus: Optus});
+    };
     componentDidMount() {
-        this.setState({optus: OptusCarousel});
+        console.log(this.state.render);
     };
     // Constructor
     constructor(props) {
         super(props);
         this.state = {
-            img: 'http://res.cloudinary.com/promanager/image/upload/v1518236844/favicon.ico_cgdh2n.png',
-            optus: [],
+            render: 0,
+            // optus: [],
         };
     };
 
+    handleSelect = (eventKey) => {
+        this.setState({render: eventKey});
+    };
+    
     render(){
         
         return(
@@ -27,34 +36,24 @@ class Home extends Component{
             <Navbar collapseOnSelect>
                 <Navbar.Header>
                     <Navbar.Brand>
-                        <a href="#brand"><Logo src={this.state.img}/></a>
+                        {/* <NavItem eventKey={0} onSelect={this.handleSelect}> */}
+                        <a href="/"><Logo src={Optus[0].logo} /></a>
+                        {/* </NavItem> */}
                     </Navbar.Brand>
                     <Navbar.Toggle />
                 </Navbar.Header>
                 <Navbar.Collapse>
-                    {/* <Nav>
-                        <NavItem eventKey={1} href="#">
-                        Link
-                        </NavItem>
-                        <NavItem eventKey={2} href="#">
-                        Link
-                        </NavItem>
-                        <NavDropdown eventKey={3} title="Dropdown" id="basic-nav-dropdown">
-                        <MenuItem eventKey={3.1}>Action</MenuItem>
-                        <MenuItem eventKey={3.2}>Another action</MenuItem>
-                        <MenuItem eventKey={3.3}>Something else here</MenuItem>
-                        <MenuItem divider />
-                        <MenuItem eventKey={3.3}>Separated link</MenuItem>
-                        </NavDropdown>
-                    </Nav> */}
                     <Nav pullRight>
-                        <NavItem eventKey={1} href="#">
+                        <NavItem eventKey={0} onSelect={this.handleSelect}>
+                        INICIO
+                        </NavItem>
+                        <NavItem eventKey={1} onSelect={this.handleSelect}>
                         SOBRE NOS
                         </NavItem>
-                        <NavItem eventKey={2} href="#">
+                        <NavItem eventKey={2} onSelect={this.handleSelect}>
                         PARA VOCE
                         </NavItem>
-                        <NavItem eventKey={3} href="#">
+                        <NavItem eventKey={3} onSelect={this.handleSelect}>
                         PARA EMPRESAS
                         </NavItem>
                         <NavDropdown eventKey={4} title='MAIS' id="basic-nav-dropdown">
@@ -70,6 +69,7 @@ class Home extends Component{
             
             <Grid>
                 <Row className="show-grid">
+                    {this.state.render === 0 ?
                     <Col md={7}>
                         <Carousel>
                             <Carousel.Item>
@@ -92,6 +92,51 @@ class Home extends Component{
                             </Carousel.Item>
                         </Carousel>
                     </Col>
+                    : this.state.render === 1 ?
+                    Optus.map(optus =>
+                    <Col md={12}>
+                        <span key={optus.id}>
+                            <h2>{optus.about_header}</h2>
+                            <p>{optus.about}</p>
+                            <h2>{optus.ideals}</h2>
+                            <h3>{optus.mission_header}</h3>
+                            <p>{optus.mission}</p>
+                            <h3>{optus.vision_header}</h3>
+                            <p>{optus.vision}</p>
+                            <h3>{optus.values_header}</h3>
+                            <p>{optus.values}</p>
+                            <h2>{optus.promises}</h2>
+                            <h3>{optus.client_header}</h3>
+                            <p>{optus.client}</p>
+                            <h3>{optus.collaborator_header}</h3>
+                            <p>{optus.collaborator}</p>
+                            <h3>{optus.society_header}</h3>
+                            <p>{optus.society}</p>
+                        </span>
+                    </Col>
+                    )
+                    : this.state.render === 2 ?
+                    OptusPara.map(optuspara =>
+                    <Col md={7}>
+                    <span key={optuspara.id}>
+                        <h2>{optuspara.header_voce}</h2>
+                        <ParaImg src={optuspara.voce_img}/>
+                        <p>{optuspara.caption_voce}</p>
+                    </span>
+                    </Col>
+                    )                        
+                    : this.state.render === 3 ?
+                    OptusPara.map(optuspara =>                    
+                        <Col md={7}>                    
+                    <span key={optuspara.id}> 
+                        <h2>{optuspara.header_empresa}</h2>
+                        <ParaImg src={optuspara.empresa_img}/>
+                        <p>{optuspara.caption_empresa}</p>
+                    </span>
+                    </Col>
+                    )
+                    : ("Nothing")}
+                    {this.state.render === 0 || this.state.render === 2 ?
                     <Col md={5}>
                         <h2> Vagas Recentes </h2>
                         <Table responsive>
@@ -114,6 +159,7 @@ class Home extends Component{
                             </tbody>
                         </Table>
                     </Col>
+                    : <span/>}
                 </Row>
             </Grid>
             </span>
