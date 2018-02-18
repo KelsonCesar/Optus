@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Navbar, Nav, NavItem, NavDropdown, MenuItem, Carousel, Grid, Row, Col, Table, Button, ButtonToolbar  } from 'react-bootstrap';
+import { Form, FormGroup, Label, Input, FormText, InputGroup, InputGroupAddon, InputGroupText } from 'reactstrap';
 import { Logo }from '../../components/Logo';
 import { P, Span, Sticky }from '../../components/Tag';
 import { CarouselImg, ParaImg, ServicosImg }from '../../components/Images';
@@ -17,13 +18,14 @@ class Home extends Component{
     };
     componentDidMount() {
         this.setState({render: 0});
-        console.log(this.state.render);
+        // console.log(this.state.render);
     };
     // Constructor
     constructor(props) {
         super(props);
         this.state = {
             render: '',
+            type: '',
             // optus: [],
         };
     };
@@ -33,16 +35,14 @@ class Home extends Component{
     };
     
     render(){
-        
+// This Block Renders NavBar Header Logo     
         return(
             <div>
-            <span class="page-wrap">
-            <Navbar fixedTop>{/*  collapseOnSelect */}
+            <span className="page-wrap">
+            <Navbar fixedTop>
                 <Navbar.Header>
                     <Navbar.Brand>
-                        {/* <NavItem eventKey={0} onSelect={this.handleSelect}> */}
-                        <a href="/"><Logo src={Optus[0].logo} /></a>
-                        {/* </NavItem> */}
+                        <a href="/"><Logo src={Optus[0].logo}/></a>
                     </Navbar.Brand>
                     <Navbar.Toggle />
                 </Navbar.Header>
@@ -55,17 +55,17 @@ class Home extends Component{
                         SOBRE NOS
                         </NavItem>
                         <NavItem eventKey={2} onSelect={this.handleSelect}>
-                        PARA VOCE
+                        INDIVIDUO
                         </NavItem>
                         <NavItem eventKey={3} onSelect={this.handleSelect}>
-                        PARA EMPRESAS
+                        EMPRESA
                         </NavItem>
                         <NavDropdown eventKey={4} title='MAIS' id="basic-nav-dropdown">
                         <MenuItem id="basic-nav-dropdown" eventKey={4.1}>Login</MenuItem>
                         <MenuItem id="basic-nav-dropdown" eventKey={4.2}>Cadastro</MenuItem>
                         <MenuItem id="basic-nav-dropdown" eventKey={4.3}>Servicos</MenuItem>
                         <MenuItem id="basic-nav-dropdown" eventKey={4.4}>Treinamentos</MenuItem>
-                        <MenuItem id="basic-nav-dropdown" eventKey={4.5}>Contato</MenuItem>
+                        <MenuItem id="basic-nav-dropdown" eventKey={5} onClick={()=>{this.handleSelect(5); this.setState({type: 'ADMINISTRADOR'})}}>Administrador</MenuItem>
                         </NavDropdown>
                     </Nav>
                 </Navbar.Collapse>
@@ -73,6 +73,7 @@ class Home extends Component{
             <div style={{margin: '100px'}}/>
             <Grid>
                 <Row className="show-grid">
+{/* // This Block Render Home Inicio */}
                     {this.state.render === 0 ?
                     <Col sm={7}>
                         <Carousel>
@@ -97,6 +98,7 @@ class Home extends Component{
                         </Carousel>
                     </Col>
                     : this.state.render === 1 ?
+// This Block Renders Sobre Nos OptusRH
                     Optus.map(optus =>
                     <Col xs={12} md={8} mdOffset={2}>
                         <span key={optus.id}>
@@ -119,19 +121,20 @@ class Home extends Component{
                         </span>
                     </Col>
                     )
+// This BLock Renders Optus Para Voce
                     : this.state.render === 2 ?
                     OptusPara.map(optuspara =>
-                    <Col sm={7}>
+                    <Col sm={7}  key={optuspara.id}>
                     <span key={optuspara.id}>
                         <Col sm={12}><h2>{optuspara.header_voce}</h2></Col>
                         <ParaImg src={optuspara.voce_img}/>
                         <P>{optuspara.caption_voce}</P>
                         <Col sm={12}>
-                        <ButtonToolbar>
-                            <Button bsStyle="primary" bsSize="large">
+                        <ButtonToolbar key={optuspara.id}>
+                            <Button bsStyle="primary" bsSize="large" onClick={()=>{this.handleSelect(4); this.setState({type: 'INDIVIDUAL'})}}>
                                 Cadastro Individual
                             </Button>
-                            <Button bsSize="large">
+                            <Button bsSize="large" onClick={()=>{this.handleSelect(5); this.setState({type: 'INDIVIDUAL'})}}>
                                 Acessar Minha Conta
                             </Button>
                         </ButtonToolbar>
@@ -139,6 +142,7 @@ class Home extends Component{
                     </span>
                     </Col>
                     )                        
+// This BLock Renders Optus Para Empresa
                     : this.state.render === 3 ?
                     OptusPara.map(optuspara =>                    
                         <Col sm={7}>                    
@@ -148,10 +152,10 @@ class Home extends Component{
                         <P>{optuspara.caption_empresa}</P>
                         <Col sm={12}>
                         <ButtonToolbar>
-                            <Button bsStyle="primary" bsSize="large">
+                            <Button bsStyle="primary" bsSize="large" onClick={()=>{this.handleSelect(4); this.setState({type: 'EMPRESARIAL'})}}>
                                 Cadastro Empresarial
                             </Button>
-                            <Button bsSize="large">
+                            <Button bsSize="large" onClick={()=>{this.handleSelect(5); this.setState({type: 'EMPRESARIAL'})}}>
                                 Acessar Minha Conta
                             </Button>
                         </ButtonToolbar>
@@ -159,7 +163,75 @@ class Home extends Component{
                     </span>
                     </Col>
                     ) 
+// This Block Render Cadastro de Usuario
+                    : this.state.render === 4 ?
+                    <Row>
+                    <Col xs={12} md={8} mdOffset={2}>
+                        <Col md={12}><h2>CADASTRO {this.state.type}</h2></Col>
+                        <Col md={12}><p>Cadastre seu curriculo em nosso site.</p></Col>
+                        <Col md={12}><h3>Dados Basicos</h3></Col>
+                        <Col md={12}><hr/></Col>
+                        <InputGroup>
+                            <InputGroupAddon addonType="prepend">@</InputGroupAddon>
+                            <Input placeholder="Email" />
+                        </InputGroup>
+
+
+                    </Col>
+                    </Row>
+// This Block Render Acesso de Conta
+                    : this.state.render === 5 ?
+                    <Row>
+                    <Col xs={12} md={8} mdOffset={2}>
+                        <Col md={12}><h2>ACESSE SUA CONTA</h2></Col>
+                        <Col md={12}><p>Utilize o formulário abaixo para acessar a sua conta.</p></Col>
+                        <Col md={12}><p>Informe o email e senha cadastrados em nosso site.</p></Col>
+                        <Col md={12}><h3>Acessar</h3></Col>
+                        <Col md={12}><hr/></Col>
+                        <Col md={12}>
+                        <FormGroup check>
+                            <Label check>
+                            <Input type="radio" name="radio1" value={this.state.type} defaultChecked/>{' '}
+                            {this.state.type}
+                            </Label>
+                        </FormGroup>
+                        </Col>
+                        <br/>                        
+                        <Col md={12}>
+                        <p>Email:<Input type="email" name="email" id="email_id" placeholder="" /></p>
+                        </Col>
+                        <Col md={12}>
+                            <p>Senha:<Input type="password" name="password" id="password_id" placeholder="" /></p>
+                        </Col>
+                        <Col md={12}>
+                            <Button bsStyle="primary" bsSize="large" onClick={()=>{console.log('Submit')}}>Acessar</Button>
+                        </Col>
+                        <br/>
+                        <Col md={12}>
+                        <Nav>
+                            <NavItem eventKey={6} onSelect={this.handleSelect}>
+                                <p>Esqueci minha senha</p>
+                            </NavItem>
+                        </Nav>
+                        </Col>
+                        <br/>
+                        <Col md={12}>
+                        <h2>Não possui cadastro?</h2>
+                        <hr/>
+                        <Nav>
+                            <NavItem onClick={()=>{this.handleSelect(4); this.setState({type: 'INDIVIDUAL'})}}>
+                                <p>>Cadastre seu curriculo.</p>
+                            </NavItem>
+                            <NavItem onClick={()=>{this.handleSelect(4); this.setState({type: 'EMPRESARIAL'})}}>
+                                <p>>Cadastre sua empresa.</p>
+                            </NavItem>
+                        </Nav>
+                        </Col>
+
+                    </Col>
+                    </Row>
                     : <span/> }
+{/*  THis Block Render Vagas Recentes */}
                     {this.state.render === 0 || this.state.render === 2 ?
                     <Col sm={5}>
                         <h2>Vagas Recentes</h2>
@@ -185,6 +257,7 @@ class Home extends Component{
                     </Col>
                     : <span/>}
                 </Row>
+{/* This Block Render Nossos Servicos */}
                 {this.state.render === 2 || this.state.render === 3 ? 
                 OptusServicos.map(servicos =>
                 <Row className="show-grid" key={servicos.id}>
@@ -211,6 +284,7 @@ class Home extends Component{
             </Grid>
             </span>
             <div style={{margin: '50px'}}/>
+{/* Sticky Footer */}
             <Sticky>
                 <Grid>
                     <Row>
