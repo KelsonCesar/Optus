@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Navbar, Nav, NavItem, NavDropdown, MenuItem, Carousel, Grid, Row, Col, Table, Button, ButtonToolbar  } from 'react-bootstrap';
-import { Form, FormGroup, Label, Input, FormText, InputGroup, InputGroupAddon, InputGroupText } from 'reactstrap';
 import { Logo }from '../../components/Logo';
 import { P, Span, Sticky }from '../../components/Tag';
 import { CarouselImg, ParaImg, ServicosImg }from '../../components/Images';
@@ -25,13 +24,22 @@ class Home extends Component{
         super(props);
         this.state = {
             render: '',
-            type: '',
+            user: '',
             // optus: [],
         };
     };
 
-    handleSelect = (eventKey) => {
+    handleSelect = (eventKey, user) => {
+        if(eventKey === 4){
+            localStorage.setItem("user", user);
+            window.location = "/register";
+        }else
+        if(eventKey === 5){
+            localStorage.setItem("user", user);
+            window.location = "/login";
+        }else{
         this.setState({render: eventKey});
+        }
     };
     
     render(){
@@ -63,9 +71,9 @@ class Home extends Component{
                         <NavDropdown eventKey={4} title='MAIS' id="basic-nav-dropdown">
                         <MenuItem id="basic-nav-dropdown" eventKey={4.1}>Login</MenuItem>
                         <MenuItem id="basic-nav-dropdown" eventKey={4.2}>Cadastro</MenuItem>
-                        <MenuItem id="basic-nav-dropdown" eventKey={4.3}>Servicos</MenuItem>
-                        <MenuItem id="basic-nav-dropdown" eventKey={4.4}>Treinamentos</MenuItem>
-                        <MenuItem id="basic-nav-dropdown" eventKey={5} onClick={()=>{this.handleSelect(5); this.setState({type: 'ADMINISTRADOR'})}}>Administrador</MenuItem>
+                        <MenuItem id="basic-nav-dropdown" eventKey={6} onSelect={this.handleSelect}>Servicos</MenuItem>
+                        <MenuItem id="basic-nav-dropdown" eventKey={7} onSelect={this.handleSelect}>Treinamentos</MenuItem>
+                        <MenuItem id="basic-nav-dropdown" eventKey={5} onClick={()=>{this.handleSelect(5, 'ADMINISTRADOR')}}>Administrador</MenuItem>
                         </NavDropdown>
                     </Nav>
                 </Navbar.Collapse>
@@ -100,8 +108,8 @@ class Home extends Component{
                     : this.state.render === 1 ?
 // This Block Renders Sobre Nos OptusRH
                     Optus.map(optus =>
-                    <Col xs={12} md={8} mdOffset={2}>
-                        <span key={optus.id}>
+                    <Col xs={12} md={10} mdOffset={1} key={optus.id}>
+                        <span>
                             <h2>{optus.about_header}</h2>
                             <p>{optus.about}</p>
                             <h2>{optus.ideals}</h2>
@@ -131,10 +139,10 @@ class Home extends Component{
                         <P>{optuspara.caption_voce}</P>
                         <Col sm={12}>
                         <ButtonToolbar key={optuspara.id}>
-                            <Button bsStyle="primary" bsSize="large" onClick={()=>{this.handleSelect(4); this.setState({type: 'INDIVIDUAL'})}}>
+                            <Button bsStyle="primary" bsSize="large" onClick={()=>{this.handleSelect(4, 'INDIVIDUAL')}}>
                                 Cadastro Individual
                             </Button>
-                            <Button bsSize="large" onClick={()=>{this.handleSelect(5); this.setState({type: 'INDIVIDUAL'})}}>
+                            <Button bsSize="large" onClick={()=>{this.handleSelect(5, 'INDIVIDUAL')}}>
                                 Acessar Minha Conta
                             </Button>
                         </ButtonToolbar>
@@ -145,93 +153,26 @@ class Home extends Component{
 // This BLock Renders Optus Para Empresa
                     : this.state.render === 3 ?
                     OptusPara.map(optuspara =>                    
-                        <Col sm={7}>                    
-                    <span key={optuspara.id}> 
+                        <Col sm={7} key={optuspara.id}>                    
+                    <span> 
                         <Col sm={12}><h2>{optuspara.header_empresa}</h2></Col>
                         <ParaImg src={optuspara.empresa_img}/>
                         <P>{optuspara.caption_empresa}</P>
                         <Col sm={12}>
                         <ButtonToolbar>
-                            <Button bsStyle="primary" bsSize="large" onClick={()=>{this.handleSelect(4); this.setState({type: 'EMPRESARIAL'})}}>
+                            <Button bsStyle="primary" bsSize="large" onClick={()=>{this.handleSelect(4, 'EMPRESARIAL')}}>
                                 Cadastro Empresarial
                             </Button>
-                            <Button bsSize="large" onClick={()=>{this.handleSelect(5); this.setState({type: 'EMPRESARIAL'})}}>
+                            <Button bsSize="large" onClick={()=>{this.handleSelect(5, 'EMPRESARIAL')}}>
                                 Acessar Minha Conta
                             </Button>
                         </ButtonToolbar>
                         </Col>
                     </span>
                     </Col>
-                    ) 
-// This Block Render Cadastro de Usuario
-                    : this.state.render === 4 ?
-                    <Row>
-                    <Col xs={12} md={8} mdOffset={2}>
-                        <Col md={12}><h2>CADASTRO {this.state.type}</h2></Col>
-                        <Col md={12}><p>Cadastre seu curriculo em nosso site.</p></Col>
-                        <Col md={12}><h3>Dados Basicos</h3></Col>
-                        <Col md={12}><hr/></Col>
-                        <InputGroup>
-                            <InputGroupAddon addonType="prepend">@</InputGroupAddon>
-                            <Input placeholder="Email" />
-                        </InputGroup>
-
-
-                    </Col>
-                    </Row>
-// This Block Render Acesso de Conta
-                    : this.state.render === 5 ?
-                    <Row>
-                    <Col xs={12} md={8} mdOffset={2}>
-                        <Col md={12}><h2>ACESSE SUA CONTA</h2></Col>
-                        <Col md={12}><p>Utilize o formulário abaixo para acessar a sua conta.</p></Col>
-                        <Col md={12}><p>Informe o email e senha cadastrados em nosso site.</p></Col>
-                        <Col md={12}><h3>Acessar</h3></Col>
-                        <Col md={12}><hr/></Col>
-                        <Col md={12}>
-                        <FormGroup check>
-                            <Label check>
-                            <Input type="radio" name="radio1" value={this.state.type} defaultChecked/>{' '}
-                            {this.state.type}
-                            </Label>
-                        </FormGroup>
-                        </Col>
-                        <br/>                        
-                        <Col md={12}>
-                        <p>Email:<Input type="email" name="email" id="email_id" placeholder="" /></p>
-                        </Col>
-                        <Col md={12}>
-                            <p>Senha:<Input type="password" name="password" id="password_id" placeholder="" /></p>
-                        </Col>
-                        <Col md={12}>
-                            <Button bsStyle="primary" bsSize="large" onClick={()=>{console.log('Submit')}}>Acessar</Button>
-                        </Col>
-                        <br/>
-                        <Col md={12}>
-                        <Nav>
-                            <NavItem eventKey={6} onSelect={this.handleSelect}>
-                                <p>Esqueci minha senha</p>
-                            </NavItem>
-                        </Nav>
-                        </Col>
-                        <br/>
-                        <Col md={12}>
-                        <h2>Não possui cadastro?</h2>
-                        <hr/>
-                        <Nav>
-                            <NavItem onClick={()=>{this.handleSelect(4); this.setState({type: 'INDIVIDUAL'})}}>
-                                <p>>Cadastre seu curriculo.</p>
-                            </NavItem>
-                            <NavItem onClick={()=>{this.handleSelect(4); this.setState({type: 'EMPRESARIAL'})}}>
-                                <p>>Cadastre sua empresa.</p>
-                            </NavItem>
-                        </Nav>
-                        </Col>
-
-                    </Col>
-                    </Row>
+                    )
                     : <span/> }
-{/*  THis Block Render Vagas Recentes */}
+{/* //  THis Block Render Vagas Recentes */}
                     {this.state.render === 0 || this.state.render === 2 ?
                     <Col sm={5}>
                         <h2>Vagas Recentes</h2>
@@ -258,11 +199,13 @@ class Home extends Component{
                     : <span/>}
                 </Row>
 {/* This Block Render Nossos Servicos */}
-                {this.state.render === 2 || this.state.render === 3 ? 
+                {this.state.render === 0 || this.state.render === 2 || this.state.render === 3 || this.state.render === 6 ? 
                 OptusServicos.map(servicos =>
                 <Row className="show-grid" key={servicos.id}>
                 <span>
-                    <Col md={12}><hr/></Col>
+                {this.state.render === 0 || this.state.render === 2 || this.state.render === 3 ?
+                <span>
+                <Col md={12}><hr/></Col>
                     <Col sm={12}><h2>{servicos.header}</h2></Col>
                     <Col sm={12}><h3>{servicos.header_caption}</h3></Col>
                     <Col sm={4}>
@@ -277,7 +220,52 @@ class Home extends Component{
                         <ServicosImg src={servicos.evalpsic_img}/>
                         <P>{servicos.evalpsic_header}</P>
                     </Col>
+                    <br/>
+                    <Col sm={12}><Button bsStyle="primary" bsSize="large" onClick={()=>{this.handleSelect(6)}}>Conheca Todos Nossos Servicos</Button></Col>
                 </span>
+                : <span/> }
+                </span>
+                
+                {this.state.render === 6 ? 
+                <Col md={10} mdOffset={1} >
+                    <Col md={12}><h2>{servicos.header}</h2></Col>
+                    <Col md={12}><p>{servicos.sub_header}</p></Col>
+                    <Col md={12}><h3>{servicos.recsel_header}</h3></Col>
+                    <Col md={12}><hr/></Col>
+                    <Col md={12}>
+                        <p>
+                        <ServicosImg src={servicos.recsel_img} style={{width: '33.333%', float: 'left', marginRight: '20px'}}/>
+                        <p>{servicos.recsel_caption}</p>
+                        </p>
+                    </Col>
+                    <Col md={12}><h3>{servicos.training_header}</h3></Col>
+                    <Col md={12}><hr/></Col>
+                    <Col md={12}>
+                        <p>
+                        <ServicosImg src={servicos.training_img} style={{width: '33.333%', float: 'left', marginRight: '20px'}}/>
+                        <p>{servicos.training_caption}</p>
+                        </p>
+                    </Col>
+                    <Col md={12}><h3>{servicos.evalpsic_header}</h3></Col>
+                    <Col md={12}><hr/></Col>
+                    <Col md={12}>
+                        <p>
+                        <ServicosImg src={servicos.evalpsic_img} style={{width: '33.333%', float: 'left', marginRight: '20px'}}/>
+                        <p>{servicos.evalpsic_caption}</p>
+                        </p>
+                    </Col>
+                    <Col md={12}><h3>{servicos.coaching_header}</h3></Col>
+                    <Col md={12}><hr/></Col>
+                    <Col md={12}>
+                        <p>
+                        <ServicosImg src={servicos.coaching_img} style={{width: '33.333%', float: 'left', marginRight: '20px'}}/>
+                        <p>{servicos.coaching_caption}</p>
+                        </p>
+                    </Col>
+                    <Col md={12}><h3>{servicos.bmanagment_header}</h3></Col>
+                        <ServicosImg src={servicos.bmanagment_img} style={{width: '33.333%', float: 'left', marginRight: '20px'}}/>
+                        <p>{servicos.bmanagment_caption}</p>
+                </Col> : <span/>}
                 </Row>
                 )
                 : <span/> }

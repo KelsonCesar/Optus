@@ -7,7 +7,8 @@
     font-family: 'Source Sans Pro',sans-serif;
 }
 .custom_span{
-    padding: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
     font-size: 20pt;
     color: #8f4c9b;
     font-family: 'Source Sans Pro',sans-serif;    
