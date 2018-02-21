@@ -1,7 +1,7 @@
 import React from 'react';
 import './logo.css';
 
-export const OptusRH = props =>
+export const OptusRH = props =>(
 <span>
     <span className='purple'>
         OPTUS
@@ -9,4 +9,4 @@ export const OptusRH = props =>
     <span className='orange'>
     RH
     </span>
-</span>;
+</span>);

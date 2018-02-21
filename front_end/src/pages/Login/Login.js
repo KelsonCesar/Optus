@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Nav, NavItem, Grid, Row, Col, Button, Jumbotron } from 'react-bootstrap';
+import { Nav, NavItem, Grid, Row, Col, Button, Jumbotron, Glyphicon } from 'react-bootstrap';
 import { FormGroup, Label, Input } from 'reactstrap';
 import { Logo }from '../../components/Logo';
 import Optus from '../../Optus.json';
@@ -12,10 +12,7 @@ class Login extends Component{
         // this.setState({Optus: Optus});
     };
     componentDidMount() {
-        var test = localStorage.getItem("user");
         this.setState({user: localStorage.getItem("user")});
-        console.log("Aqui"+ this.state.user);
-        console.log(test);
     };
     // Constructor
     constructor(props) {
@@ -43,15 +40,34 @@ class Login extends Component{
                 <Row>
                     <Col xs={12} md={8} mdOffset={2}>
                         <Col md={12}><h1><Logo src={Optus[0].logo}/>{' '}ACESSE SUA CONTA OPTUS</h1></Col>
+                        <Col md={12}>
+                            <a href="/">
+                                <Glyphicon glyph="home" />{" - "}INICIO
+                            </a>
+                        </Col>
                         <Col md={12}><hr/></Col>
                         <Col md={12}><p>Utilize o formulário abaixo para acessar a sua conta.</p></Col>
                         <Col md={12}><p>Informe o email e senha cadastrados em nosso site.</p></Col>
                         <Col md={12}>
                         <FormGroup check>
+                        {this.state.user !== 'undefined' ? 
                             <Label check>
                             <Input type="radio" name="radio1" value={this.state.user} defaultChecked/>{' '}
                             {this.state.user}
                             </Label>
+                        : 
+                        <span>
+                        <Label>
+                            <Input type="radio" name="radio1" value='INDIVIDUAL'/>{' '}
+                            INDIVIDUAL
+                        </Label>
+                        <br/>
+                        <Label>
+                            <Input type="radio" name="radio1" value='EMPRESARIAL'/>{' '}
+                            EMPRESARIAL
+                        </Label>   
+                        </span>                         
+                        }
                         </FormGroup>
                         </Col>
                         <br/>                        
@@ -65,7 +81,7 @@ class Login extends Component{
                             <Button bsStyle="primary" bsSize="large" onClick={()=>{console.log('Submit')}}>Acessar</Button>
                         </Col>
                         <br/>
-                        <Col md={12}>
+                        <Col md={12} style={{marginTop: "20px"}}>
                         <Nav>
                             <NavItem eventKey={6} onSelect={this.handleSelect}>
                                 <p>Esqueci minha senha</p>

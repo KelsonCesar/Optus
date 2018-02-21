@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
-import { Navbar, Nav, NavItem, NavDropdown, MenuItem, Carousel, Grid, Row, Col, Table, Button, ButtonToolbar  } from 'react-bootstrap';
+import { Navbar, Nav, NavItem, NavDropdown, MenuItem, Carousel, Grid, Row, Col, Table, Button, ButtonToolbar, Glyphicon } from 'react-bootstrap';
 import { Logo }from '../../components/Logo';
 import { P, Span, Sticky }from '../../components/Tag';
 import { CarouselImg, ParaImg, ServicosImg }from '../../components/Images';
 import OptusCarousel from '../../OptusCarousel.json';
 import OptusServicos from '../../OptusServicos.json';
+import OptusContact from '../../OptusContact.json';
+import OptusTrain from '../../OptusTrain.json';
 import OptusVagas from '../../OptusVagas.json';
 import OptusPara from '../../OptusPara.json';
 import Optus from '../../Optus.json';
@@ -50,7 +52,11 @@ class Home extends Component{
             <Navbar fixedTop>
                 <Navbar.Header>
                     <Navbar.Brand>
-                        <a href="/"><Logo src={Optus[0].logo}/></a>
+                        <a href="/">
+                        <Logo src={Optus[0].logo}/>
+                        <span className='purple'>OPTUS</span>
+                        <span className='orange'>RH</span>
+                        </a>
                     </Navbar.Brand>
                     <Navbar.Toggle />
                 </Navbar.Header>
@@ -69,8 +75,8 @@ class Home extends Component{
                         EMPRESA
                         </NavItem>
                         <NavDropdown eventKey={4} title='MAIS' id="basic-nav-dropdown">
-                        <MenuItem id="basic-nav-dropdown" eventKey={4.1}>Login</MenuItem>
-                        <MenuItem id="basic-nav-dropdown" eventKey={4.2}>Cadastro</MenuItem>
+                        <MenuItem id="basic-nav-dropdown" onClick={()=>{this.handleSelect(5)}}>Login</MenuItem>
+                        <MenuItem id="basic-nav-dropdown" onClick={()=>{this.handleSelect(4)}}>Cadastro</MenuItem>
                         <MenuItem id="basic-nav-dropdown" eventKey={6} onSelect={this.handleSelect}>Servicos</MenuItem>
                         <MenuItem id="basic-nav-dropdown" eventKey={7} onSelect={this.handleSelect}>Treinamentos</MenuItem>
                         <MenuItem id="basic-nav-dropdown" eventKey={5} onClick={()=>{this.handleSelect(5, 'ADMINISTRADOR')}}>Administrador</MenuItem>
@@ -83,7 +89,8 @@ class Home extends Component{
                 <Row className="show-grid">
 {/* // This Block Render Home Inicio */}
                     {this.state.render === 0 ?
-                    <Col sm={7}>
+                    <span>
+                    <Col md={7}>
                         <Carousel>
                             <Carousel.Item>
                                 <CarouselImg src={OptusCarousel[0].img} />
@@ -105,12 +112,28 @@ class Home extends Component{
                             </Carousel.Item>
                         </Carousel>
                     </Col>
+                    <Col md={5}>
+                    {OptusContact.map( contact => 
+                    <span>
+                    <Col sm={12}>
+                        <P>Com o olhar voltado para o futuro, a <strong>OptusRh</strong> trabalha na construção 
+                        de soluções integradas e flexíveis de RH.</P>
+                    </Col>
+                    <Col md={12}><p><a href={contact.phone}><Glyphicon glyph="earphone"/>{' '}{contact.phone}</a></p></Col>
+                    <Col md={12}><p><a href={contact.whatApp}><Glyphicon glyph="whatsapp"/>{' '}{contact.whatApp}</a></p></Col>
+                    <Col md={12}><p><a href={contact.email}><Glyphicon glyph="envelope"/>{' '}{contact.email}</a></p></Col>
+                    <Col md={12}><p><a href={contact.facebook}><Glyphicon glyph="socialFacebook"/>{' '}Facebook OptusRH</a></p></Col>
+                    <Col md={12}><p><a href={contact.linkedIn}><Glyphicon glyph="linked-in"/>{' '}LinkedIn OptusRH</a></p></Col>
+                    </span>
+                    )}
+                    </Col>
+                    </span>
                     : this.state.render === 1 ?
 // This Block Renders Sobre Nos OptusRH
                     Optus.map(optus =>
                     <Col xs={12} md={10} mdOffset={1} key={optus.id}>
                         <span>
-                            <h2>{optus.about_header}</h2>
+                            <h2><strong>{optus.about_header}</strong></h2>
                             <p>{optus.about}</p>
                             <h2>{optus.ideals}</h2>
                             <h3><Span>{optus.mission_header}</Span></h3>
@@ -134,7 +157,7 @@ class Home extends Component{
                     OptusPara.map(optuspara =>
                     <Col sm={7}  key={optuspara.id}>
                     <span key={optuspara.id}>
-                        <Col sm={12}><h2>{optuspara.header_voce}</h2></Col>
+                        <Col sm={12}><h2><strong>{optuspara.header_voce}</strong></h2></Col>
                         <ParaImg src={optuspara.voce_img}/>
                         <P>{optuspara.caption_voce}</P>
                         <Col sm={12}>
@@ -155,7 +178,7 @@ class Home extends Component{
                     OptusPara.map(optuspara =>                    
                         <Col sm={7} key={optuspara.id}>                    
                     <span> 
-                        <Col sm={12}><h2>{optuspara.header_empresa}</h2></Col>
+                        <Col sm={12}><h2><strong>{optuspara.header_empresa}</strong></h2></Col>
                         <ParaImg src={optuspara.empresa_img}/>
                         <P>{optuspara.caption_empresa}</P>
                         <Col sm={12}>
@@ -173,9 +196,9 @@ class Home extends Component{
                     )
                     : <span/> }
 {/* //  THis Block Render Vagas Recentes */}
-                    {this.state.render === 0 || this.state.render === 2 ?
+                    {this.state.render === 2 ?
                     <Col sm={5}>
-                        <h2>Vagas Recentes</h2>
+                        <h2><strong>Vagas Recentes</strong></h2>
                         <Table responsive>
                             <thead>
                                 <tr>
@@ -184,28 +207,22 @@ class Home extends Component{
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                <td><p>{OptusVagas[0].position}</p></td>
-                                <td><p>{OptusVagas[0].cidade}</p></td>
+                            {OptusVagas.map(vagas => 
+                                <tr key={vagas.id}>
+                                <td><p>{vagas.position}</p></td>
+                                <td><p>{vagas.cidade}</p></td>
                                 </tr>
-                                <tr>
-                                <td><p>{OptusVagas[1].position}</p></td>
-                                <td><p>{OptusVagas[1].cidade}</p></td>
-                                </tr>
-                                <tr></tr>   
+                            )}  
                             </tbody>
                         </Table>
                     </Col>
                     : <span/>}
                 </Row>
 {/* This Block Render Nossos Servicos */}
-                {this.state.render === 0 || this.state.render === 2 || this.state.render === 3 || this.state.render === 6 ? 
-                OptusServicos.map(servicos =>
-                <Row className="show-grid" key={servicos.id}>
-                <span>
                 {this.state.render === 0 || this.state.render === 2 || this.state.render === 3 ?
-                <span>
-                <Col md={12}><hr/></Col>
+                OptusServicos.map(servicos =>
+                    <span>
+                {/* <Col md={12}><hr/></Col>
                     <Col sm={12}><h2>{servicos.header}</h2></Col>
                     <Col sm={12}><h3>{servicos.header_caption}</h3></Col>
                     <Col sm={4}>
@@ -221,57 +238,61 @@ class Home extends Component{
                         <P>{servicos.evalpsic_header}</P>
                     </Col>
                     <br/>
-                    <Col sm={12}><Button bsStyle="primary" bsSize="large" onClick={()=>{this.handleSelect(6)}}>Conheca Todos Nossos Servicos</Button></Col>
+                    <Col sm={12}><Button bsStyle="primary" bsSize="large" onClick={()=>{this.handleSelect(6)}}>Conheca Todos Nossos Servicos</Button></Col> */}
                 </span>
-                : <span/> }
-                </span>
-                
-                {this.state.render === 6 ? 
-                <Col md={10} mdOffset={1} >
-                    <Col md={12}><h2>{servicos.header}</h2></Col>
-                    <Col md={12}><p>{servicos.sub_header}</p></Col>
-                    <Col md={12}><h3>{servicos.recsel_header}</h3></Col>
-                    <Col md={12}><hr/></Col>
-                    <Col md={12}>
-                        <p>
-                        <ServicosImg src={servicos.recsel_img} style={{width: '33.333%', float: 'left', marginRight: '20px'}}/>
-                        <p>{servicos.recsel_caption}</p>
-                        </p>
-                    </Col>
-                    <Col md={12}><h3>{servicos.training_header}</h3></Col>
-                    <Col md={12}><hr/></Col>
-                    <Col md={12}>
-                        <p>
-                        <ServicosImg src={servicos.training_img} style={{width: '33.333%', float: 'left', marginRight: '20px'}}/>
-                        <p>{servicos.training_caption}</p>
-                        </p>
-                    </Col>
-                    <Col md={12}><h3>{servicos.evalpsic_header}</h3></Col>
-                    <Col md={12}><hr/></Col>
-                    <Col md={12}>
-                        <p>
-                        <ServicosImg src={servicos.evalpsic_img} style={{width: '33.333%', float: 'left', marginRight: '20px'}}/>
-                        <p>{servicos.evalpsic_caption}</p>
-                        </p>
-                    </Col>
-                    <Col md={12}><h3>{servicos.coaching_header}</h3></Col>
-                    <Col md={12}><hr/></Col>
-                    <Col md={12}>
-                        <p>
-                        <ServicosImg src={servicos.coaching_img} style={{width: '33.333%', float: 'left', marginRight: '20px'}}/>
-                        <p>{servicos.coaching_caption}</p>
-                        </p>
-                    </Col>
-                    <Col md={12}><h3>{servicos.bmanagment_header}</h3></Col>
-                        <ServicosImg src={servicos.bmanagment_img} style={{width: '33.333%', float: 'left', marginRight: '20px'}}/>
-                        <p>{servicos.bmanagment_caption}</p>
-                </Col> : <span/>}
-                </Row>
                 )
+                : <span/> }
+{/* This Block Render Servicos */}
+                {this.state.render === 6 ?
+                <Row className="show-grid">
+                <Col md={10} mdOffset={1} >
+                <Col md={12}><h2><strong>{OptusServicos[0].main_header}</strong></h2></Col>
+                <Col md={12}><p>{OptusServicos[0].header_caption}</p></Col>
+                { OptusServicos.map(servicos => 
+                <span key={servicos.id}>
+                {/* Condition to render not undefined values */}
+                {servicos.header === undefined || servicos.img === undefined || servicos.caption === undefined ? <span/> 
+                : 
+                <span>
+                <Col md={12}><hr/></Col>
+                <Col md={12}><h3>{servicos.header}</h3></Col>
+                <Col md={12}>
+                    <p>
+                    <ServicosImg src={servicos.img} style={{width: '33.333%', float: 'left', marginRight: '20px'}}/>
+                    <p>{servicos.caption}</p>
+                    </p>
+                </Col>
+                </span> }
+                </span>
+                )}
+                </Col>
+                </Row>
+                : <span/> }
+{/* This Block Render Treinamentos */}
+                {this.state.render === 7 ? 
+                    <Col md={10} mdOffset={1} >
+                    <Col md={12}><h2><strong>{OptusTrain[0].header}</strong></h2></Col>
+                    <Col md={12}><p>{OptusTrain[0].header_caption}</p></Col>
+                    {OptusTrain.map(train => 
+                    <span key={train.id}>
+                    {train.train_header !== undefined ||  train.train_img !== undefined || train.train_caption !== undefined ? 
+                    <span>
+                    <Col md={12}><hr/></Col>
+                    <Col md={12}><h3>{train.train_header}</h3></Col>
+                    <Col md={12}>
+                        <p>
+                        <ServicosImg src={train.train_img} style={{width: '50%', height: '40rem', float: 'left', marginRight: '20px'}}/>
+                        {train.train_caption}
+                        </p>
+                    </Col>
+                    </span>
+                    : <span/> }
+                    </span>
+                    )}
+                </Col>
                 : <span/> }
             </Grid>
             </span>
-            <div style={{margin: '50px'}}/>
 {/* Sticky Footer */}
             <Sticky>
                 <Grid>

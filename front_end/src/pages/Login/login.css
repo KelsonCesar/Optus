@@ -1,0 +1,8 @@
+a{
+    color: #e96c0b;
+    text-decoration: none;
+}
+a:hover{
+    text-decoration-style: none;
+    color: #800080;
+}

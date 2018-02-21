@@ -1,0 +1,19 @@
+[
+    {
+        "id": 1,
+        "header": "TREINAMENTOS",
+        "header_caption": "Processo de aprendizagem que auxilia o profissional a atingir a eficiência exigida no seu trabalho, para que esse profissional tenha um crescimento, podendo explorar o seu potencial."
+    },
+    {
+        "id": 2,
+        "train_header": "Curso de Oratória.",
+        "train_caption": "As aulas possuem carga horária de dez horas, cada uma com no máximo 13 alunos. Os tópicos abordados variam entre as formas de se portar durante a apresentação e como prender a atenção da plateia. Quais palavras utilizar no discurso e técnicas de criação de roteiro e storytelling também são abordadas no curso.",
+        "train_img": "http://www.optusrh.com.br/Images/Treinamentos/2/WhatsAppImage2017-11-17at16.02.33.jpeg"
+    },
+    {
+        "id": 3,
+        "train_header": " Feito é melhor que perfeito.",
+        "train_caption": "Procrastinar é o ato de adiar algo ou prolongar uma situação para ser resolvida depois. A procrastinação é um comportamento considerado normal ao ser humano, no entanto pode ser muito prejudicial quando começa a impedir o funcionamento de rotinas pessoais ou profissionais.",
+        "train_img": "http://www.optusrh.com.br/Images/Treinamentos/3/procrastinarc.jpg"
+    }
+]

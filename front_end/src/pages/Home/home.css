@@ -8,7 +8,6 @@ body{
 .page-wrap:after {
     content: "";
     display: block;
-    height: 142px;
 }
 nav.navbar.navbar-default{
     height: 7rem;
@@ -47,18 +46,33 @@ ul.nav.navbar-nav.navbar-right{
     text-align: center;
     justify-content: center;
 }
+
 p{
     font-size: 15pt;
     color: #52575c;
     text-align: justify;
     font-family: 'Source Sans Pro',sans-serif;
+}.glyphicon{
+    padding: 5px;
+    border: 1px solid;
+    border-radius: 5px;
 }
 
 
+@media screen and (min-width: 800px) and (max-width: 992px){
+    .container{
+        width: 90%;
+    }
+    .nav>li>a{
+        padding: 15px 10px;
+    }
+}
 
-
-
-
+@media screen and (min-width: 768px) and (max-width: 800px){
+    .nav>li>a{
+        padding: 15px 8px;
+    }
+}
 
 @media screen and (max-width: 768px){
 
